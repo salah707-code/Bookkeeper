@@ -1,0 +1,7 @@
+{
+  "name": "ميزان",
+  "description": "تطبيق محمول لإدارة المصاريف والادخار الشخصي بتصميم خفيف وسريع وأنيق، يدعم العربية والإنجليزية والوضع الداكن والفاتح والقفل المحلي.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
