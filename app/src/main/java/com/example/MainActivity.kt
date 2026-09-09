@@ -43,6 +43,7 @@ import com.example.ui.screens.AddEditTransactionSheet
 import com.example.ui.screens.DepositDialog
 import com.example.ui.screens.HomeScreen
 import com.example.ui.screens.LockScreen
+import com.example.ui.screens.LogExpenseScreen
 import com.example.ui.screens.ProfileScreen
 import com.example.ui.screens.SavingsScreen
 import com.example.ui.screens.SettingsScreen
@@ -163,6 +164,24 @@ fun MizanAppContent(
             )
         }
 
+        currentTab == "LOG_EXPENSE" -> {
+            LogExpenseScreen(
+                currencySymbol = userProfile.currencySymbol,
+                useArabicIndic = appSettings.numberFormat == "ARABIC_INDIC",
+                isArabic = isArabic,
+                onBack = { currentTab = "HOME" },
+                onSaveExpense = { amount, category, dateMillis, description ->
+                    viewModel.addTransaction(
+                        type = com.example.data.entity.TransactionType.EXPENSE,
+                        amount = amount,
+                        category = category,
+                        dateMillis = dateMillis,
+                        note = description
+                    )
+                }
+            )
+        }
+
         else -> {
             Scaffold(
                 bottomBar = {
@@ -216,6 +235,7 @@ fun MizanAppContent(
                                 isArabic = isArabic,
                                 onNavigateToTransactions = { currentTab = "TRANSACTIONS" },
                                 onNavigateToProfile = { currentTab = "PROFILE" },
+                                onNavigateToLogExpense = { currentTab = "LOG_EXPENSE" },
                                 onTransactionClick = { tx ->
                                     editingTransaction = tx
                                     showTransactionSheet = true
